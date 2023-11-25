@@ -29,13 +29,15 @@ const CreateStore = () => {
         OwnerEmail:data?.OwnerEmail,
         shopLogo:imageHost,
         OwnerName:data?.shopName,
+        addLimit:3,
+        saleLimit:1,
      }
   const  res =  await  axiosSecure.post(`/createShop/${user?.email}`,shopInfo)
 
      console.log(data)
      console.log('createShop', res.data)
 
-    
+              alert(res.data.message)
 
 
      }

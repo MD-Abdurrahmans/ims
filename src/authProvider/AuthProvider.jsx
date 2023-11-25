@@ -82,7 +82,7 @@ const AuthProvider = ({children}) => {
         axiosSecure.get(`/role/${user?.email}`)
         .then((res)=>{
          setManager(res.data)
-        //  console.log('getRole', res.data)
+         console.log('getRole', res.data)
        
        })
      
