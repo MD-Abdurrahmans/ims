@@ -1,7 +1,9 @@
 import axios from "axios"
-import Forbidden from "../pages/404Forbidden/Forbidden";
+
+import { Navigate, useNavigate } from "react-router-dom";
 
 const secure = axios.create({
+  
     baseURL: 'http://localhost:4000/api/v1',
     withCredentials:true,
 })
@@ -25,6 +27,7 @@ const useAxiosSecure = () => {
     // interceptor use for response
 
     secure.interceptors.response.use(
+      
       (response) => {
         return response;
       },
@@ -33,9 +36,13 @@ const useAxiosSecure = () => {
         const status = error.response?.status;
         // console.log(status);
         if (status === 401 || status === 403) {
+          
           // TODO:LOGOUT USER
           // instance.post("/logout");
-          return <Forbidden/>
+          // return navigate('/forbidden')
+
+         window.location.href='/forbidden';
+           
         }
   
         return Promise.reject(error);

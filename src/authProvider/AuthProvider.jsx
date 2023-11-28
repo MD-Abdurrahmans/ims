@@ -134,7 +134,7 @@ const AuthProvider = ({children}) => {
         manager,
       }
 
-      console.log('loadin',loading)
+      // console.log('loadin',loading)
   return (
 
 

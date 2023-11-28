@@ -24,6 +24,7 @@ import AdminSale from "../pages/dashboard/Admin/saleSummary/AdminSale";
 import Users from "../pages/dashboard/Admin/users/Users";
 import PrivateDashboard from "./PrivateDashboard";
 import Error from "../pages/error/Error";
+import Forbidden from "../pages/404Forbidden/Forbidden";
 
 
   const router = createBrowserRouter([
@@ -40,6 +41,7 @@ import Error from "../pages/error/Error";
                  path:'/',
                  element:<Home></Home>
              },
+          
 
              {
                  path:'createShop',
@@ -59,6 +61,14 @@ import Error from "../pages/error/Error";
                  element:<Login></Login>
              },
         ]
+     },
+
+
+     {
+    
+            path:'/forbidden',
+            element:<Forbidden/>
+        
      },
 
      {
@@ -102,7 +112,7 @@ import Error from "../pages/error/Error";
                 path:'/dashboard/subsCription',
                 element:<PrivateRoute><SubsCription/></PrivateRoute>
             },
-
+         
 
 
             // admin only 
