@@ -7,7 +7,9 @@ const Footers = () => {
 <footer className="footer p-10">
   <aside>
     <Lottie   animationData={navLogo} className='h-32'></Lottie>
-    <p>IMS Industries Ltd.<br/>Providing Shop. create Shop Growing Business </p>
+    <p>IMS Industries Ltd.<br/>Providing Shop. create Shop Growing Business<br/>
+    <p>Copyright © 2023 - All right reserved by IMS Industries Ltd</p>
+     </p>
   </aside> 
   <nav>
     <header className="footer-title">Useful Link</header> 

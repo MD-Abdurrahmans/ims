@@ -73,7 +73,7 @@ import Forbidden from "../pages/404Forbidden/Forbidden";
 
      {
         path:'/dashboard',
-        element:<PrivateDashboard><Dashboard></Dashboard></PrivateDashboard>,
+        element:<PrivateDashboard> <PrivateRoute><Dashboard></Dashboard></PrivateRoute> </PrivateDashboard>,
     
         children:[
             {
