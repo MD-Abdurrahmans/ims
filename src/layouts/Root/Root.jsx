@@ -4,7 +4,12 @@ import Footers from "../../components/footers/Footers"
 
 
 
+
 const Root = () => {
+
+
+
+
   return (
     <div>
 

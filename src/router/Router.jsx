@@ -2,7 +2,7 @@ import {
     createBrowserRouter,
 
   } from "react-router-dom";import Root from "../layouts/Root/Root";
-import Error from "../pages/404/Error";
+
 import Register from "../pages/Forms/Register/Register";
 import Home from "../pages/Home/Home";
 import Login from "../pages/Forms/login/Login";
@@ -18,6 +18,12 @@ import UpdateProduct from "../pages/dashboard/updateProducts/UpdateProduct";
 import SaleCollection from "../pages/dashboard/saleCollection/SaleCollection";
 import CheckOut from "../pages/dashboard/checkOut/CheckOut";
 import SalesSummary from "../components/dashMenu/salesSummary/SalesSummary";
+import SalesHistory from "../components/dashMenu/salesHistory/SalesHistory";
+import ManageShop from "../pages/dashboard/Admin/manageShop/ManageShop";
+import AdminSale from "../pages/dashboard/Admin/saleSummary/AdminSale";
+import Users from "../pages/dashboard/Admin/users/Users";
+import PrivateDashboard from "./PrivateDashboard";
+import Error from "../pages/error/Error";
 
 
   const router = createBrowserRouter([
@@ -26,6 +32,8 @@ import SalesSummary from "../components/dashMenu/salesSummary/SalesSummary";
      {
         path:'/',
         element:<Root/>,
+        errorElement:<Error/>,
+       
         children:[
 
              {
@@ -55,40 +63,67 @@ import SalesSummary from "../components/dashMenu/salesSummary/SalesSummary";
 
      {
         path:'/dashboard',
-        element:<Dashboard></Dashboard>,
+        element:<PrivateDashboard><Dashboard></Dashboard></PrivateDashboard>,
+    
         children:[
             {
                 path:'/dashboard/home',
-                element:<DashboardHome></DashboardHome>
+                element:<PrivateRoute><PrivateDashboard><DashboardHome></DashboardHome></PrivateDashboard></PrivateRoute>
             },
             {
                 path:'/dashboard/productManagement',
-                element:<ProductManagement></ProductManagement>
+                element:<PrivateRoute><ProductManagement></ProductManagement></PrivateRoute>
             },
             {
                 path:'/dashboard/addProduct',
-                element:<AddProduct/>
+                element:<PrivateRoute><AddProduct/></PrivateRoute>
             },
             {
                 path:'/dashboard/updateProduct/:id',
-                element:<UpdateProduct/>
+                element:<PrivateRoute><UpdateProduct/></PrivateRoute>
             },
             {
                 path:'/dashboard/saleCollection',
-                element:<SaleCollection/>
+                element:<PrivateRoute><SaleCollection/></PrivateRoute>
             },
             {
                 path:'/dashboard/checkOut/:id',
-                element:<CheckOut/>
+                element:<PrivateRoute><CheckOut/></PrivateRoute>
             },
             {
                 path:'/dashboard/salesSummary',
-                element:<SalesSummary/>
+                element:<PrivateRoute><SalesSummary/></PrivateRoute>
+            },
+            {
+                path:'/dashboard/salesHistory',
+                element:<PrivateRoute><SalesHistory/></PrivateRoute>
             },
             {
                 path:'/dashboard/subsCription',
-                element:<SubsCription/>
+                element:<PrivateRoute><SubsCription/></PrivateRoute>
             },
+
+
+
+            // admin only 
+            {
+                path:'/dashboard/manageShop',
+                element:<PrivateRoute><ManageShop/></PrivateRoute>
+            },
+            {
+                path:'/dashboard/users',
+                element:<PrivateRoute><Users/></PrivateRoute>
+            },
+    
+            {
+                path:'/dashboard/adminSaleSummary',
+                element:<PrivateRoute><AdminSale/></PrivateRoute>
+            },
+
+
+
+
+
         ]
      }
   ])

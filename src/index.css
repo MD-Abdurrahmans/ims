@@ -1,3 +1,10 @@
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
+
+
+
+.loginBg {
+
+    background: linear-gradient( -240deg , #3F3F46 40%,#6D28D9 50%)  ;
+}

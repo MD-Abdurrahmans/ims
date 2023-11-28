@@ -1,9 +1,15 @@
 import { useForm } from "react-hook-form"
 import useAuth from "../../../hooks/useAuth"
 import upload from "../../../shared/upload";
-import { Link, Navigate, } from "react-router-dom";
+import { Link,  useNavigate, } from "react-router-dom";
 import useAxiosSecure from "../../../hooks/useAxiosSecure";
+import Halmet from "../../../shared/helmet/Halmet";
+import Lottie from "lottie-react";
+import registerLogo from'../../../assets/register.json';
+import r1 from '../../../assets/r1.svg'
+import toast from 'react-hot-toast';
 
+import { RingLoader } from "react-spinners";
 const Register = () => {
 const {createUser,updateUserProfile} = useAuth();
 const  axiosSecure = useAxiosSecure();
@@ -16,8 +22,9 @@ const  axiosSecure = useAxiosSecure();
         formState: { errors },
       } = useForm()
     
+      const navigate = useNavigate();
+      const {loading} = useAuth();
       const onSubmit = async(data) =>{
-
   console.log(data)
        const imgUrl = await upload(data.image[0])
        const imageHost = imgUrl.data.data.display_url;
@@ -45,8 +52,8 @@ const  axiosSecure = useAxiosSecure();
            
                if(res.data.acknowledged){
 
-                 alert('account created')
-                 Navigate('/login')
+                 toast.success('Account Created successfully')
+                 navigate('/')
                }
                
 
@@ -70,65 +77,67 @@ const  axiosSecure = useAxiosSecure();
 
 
   return (
-    <div>
+    <div  style={{backgroundImage: `url(${r1})`}}>
+          <Halmet title={'register'} ></Halmet>
 
-<div className="hero min-h-screen bg-base-200">
+<div className="hero min-h-screen   py-11">
   <div className="hero-content flex-col lg:flex-row-reverse">
     <div className="text-center lg:text-left">
-      <h1 className="text-5xl font-bold">Register now!</h1>
-      <p className="py-6">Provident cupiditate voluptatem et in. Quaerat fugiat ut assumenda excepturi exercitationem quasi. In deleniti eaque aut repudiandae et a id nisi.</p>
+ 
+
+       <Lottie className="max-w-md mx-auto" animationData={registerLogo}></Lottie>
     </div>
-    <div className="card shrink-0 w-full max-w-sm shadow-2xl bg-base-100">
-      <form  onSubmit={handleSubmit(onSubmit)} className="card-body">
-
+    <div className="card shrink-0 w-full max-w-sm shadow-2xl bg-[#374151] text-white bg-opacity-50 ">
+      <form  onSubmit={handleSubmit(onSubmit)} className="card-body ">
+      <h1 className="text-5xl font-bold">Register now!</h1>
         <div className="form-control">
           <label className="label">
-            <span className="label-text">Name</span>
+            <span  className="font-bold text-white label-text">Name</span>
           </label>
-          <input type="text" {...register("name")} placeholder="Name" className="input input-bordered" required />
+          <input type="text" {...register("name")} placeholder="Name" className="input text-black input-bordered" required />
         </div>
 
         <div className="form-control">
           <label className="label">
-            <span className="label-text">Image</span>
+            <span  className="font-bold text-white label-text">Image</span>
           </label>
-          <input type="file" {...register("image")} placeholder="Image" className="input input-bordered" required />
+          <input type="file" {...register("image")} placeholder="Image" className="input text-black input-bordered" required />
         </div>
 
 
         <div className="form-control">
           <label className="label">
-            <span className="label-text">Email</span>
+            <span  className="font-bold text-white label-text">Email</span>
           </label>
-          <input type="email" {...register("email")} placeholder="email" className="input input-bordered" required />
+          <input type="email" {...register("email")} placeholder="email" className="input text-black input-bordered" required />
         </div>
 
         <div className="form-control">
           <label className="label">
-            <span className="label-text">Password</span>
+            <span  className="font-bold text-white label-text">Password</span>
           </label>
           <input type="password"  {...register("password",
           { required: true, minLength:6,
           
-          })}  placeholder="password" className="input input-bordered"  />
+          })}  placeholder="password" className="input text-black input-bordered"  />
          
         
          {
            errors.password?.type === 'minLength' && 
-            <span className="text-red-600">PASSWORD MUST BE 6 CHAR</span>
+            <span  className="font-bold text-white text-red-600">PASSWORD MUST BE 6 CHAR</span>
          }
          
       
 
 
           <label className="label">
-               <p>Already have an account? <Link to='/login' className="text-blue-700" >Login</Link></p>
+               <p>Already have an account? <Link to='/login' className="font-bold text-white underline" >Login</Link></p>
           </label>
         </div>
 
 
         <div className="form-control mt-6">
-          <button className="btn btn-primary" >Register</button>
+          <button className="btn bg-[#60A5FA] " > {loading? <RingLoader size={30} className="" color="#F5F5F4" /> :''}Register </button>
         </div>
       </form>
     </div>

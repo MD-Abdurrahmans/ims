@@ -1,6 +1,8 @@
 import Container from "../../shared/Container"
+import Halmet from "../../shared/helmet/Halmet"
 import CalltoAction from "./components/CalltoAction"
 import Faq from "./components/Faq"
+import Plane from "./components/Plane"
 import Team from "./components/Team"
 import Testimonial from "./components/Testimonial"
 import Banner from "./components/banner"
@@ -8,21 +10,26 @@ import Banner from "./components/banner"
 
 const Home = () => {
   return (
-    <div>
+    <div  >
+          <Halmet title={'Home'} ></Halmet>
   
   {/* banner */}
   <Banner/>
 
 
-<Container>
+ <div className="my-10">
+ <Container>
 
-  {/* call to action */}
+{/* call to action */}
 
 <CalltoAction/>
 
+
+{/* PLAN */}
+
+<Plane/>
+
 {/* testimonial */}
-
-
 <Testimonial/>
 
 {/* team */}
@@ -32,6 +39,7 @@ const Home = () => {
 {/* FAQ? */}
 <Faq/>
 </Container>
+ </div>
 
     </div>
   )

@@ -4,6 +4,7 @@ import useProducts from "../../../hooks/useProducts";
 import useAxiosSecure from "../../../hooks/useAxiosSecure";
 import upload from "../../../shared/upload";
 import useAuth from "../../../hooks/useAuth";
+import Halmet from "../../../shared/helmet/Halmet";
 
 
 const UpdateProduct = () => {
@@ -76,6 +77,9 @@ const UpdateProduct = () => {
 
   return (
     <div>
+
+<Halmet title={'updateProduct'} ></Halmet>
+
      <form  onSubmit={handleSubmit(onSubmit)} >
 
 <div className="grid md:grid-cols-2 gap-2">

@@ -3,6 +3,8 @@ import Container from "../../../shared/Container"
 import { loadStripe } from "@stripe/stripe-js";
 import SubsCheck from "./SubsCheck";
 import { useState } from "react";
+import SectionTitle from "../../../shared/sectionTitle/SectionTitle";
+import Halmet from "../../../shared/helmet/Halmet";
 
 
 
@@ -18,6 +20,7 @@ console.log(prices)
 
   return (
     <div>
+          <Halmet title={'subsCription'} ></Halmet>
 
        <Container>
 
@@ -26,16 +29,17 @@ console.log(prices)
 
 	<div className="container px-4 mx-auto">
 
-		<div className="max-w-2xl mx-auto mb-16 text-center">
-			<span className="font-bold tracki uppercase dark:text-violet-400">Pricing</span>
-			<h2 className="text-4xl font-bold lg:text-5xl">Choose your best plan</h2>
-		</div>
+		
 
-		<div className="flex flex-wrap items-stretch -mx-4">
+	<div className="my-9">
+	<SectionTitle heading={'Subscription'} subHeading={'CHOSE YOUR PLAN'}  ></SectionTitle>
+</div>
 
-			<div className="flex w-full mb-8 sm:px-4 md:w-1/2 lg:w-1/3 lg:mb-0">
+		<div className="">
+
+			<div className="grid grid-cols-1 text-center md:grid-cols-2 lg:grid-cols-3 gap-4">
 {/* b */}
-				<div className="flex flex-grow flex-col p-6 space-y-6 rounded shadow sm:p-8 dark:bg-gray-900">
+				<div className="flex flex-grow flex-col p-6 bg-yellow-400  hover:bg-yellow-400 space-y-6 rounded shadow sm:p-8 dark:bg-gray-900">
 					<div className="space-y-2">
 						<h4 className="text-2xl font-bold">Beginner</h4>
 						<span className="text-6xl font-bold">$10</span>
@@ -54,7 +58,7 @@ console.log(prices)
 {/* modal */}
 
 <div  onClick={()=>setPrices(10)}>
- <button className="btn" onClick={()=>document.getElementById('my_modal_1').showModal()}>Get Started</button>
+ <button className="btn w-full" onClick={()=>document.getElementById('my_modal_1').showModal()}>Get Started</button>
 <dialog id="my_modal_1" className="modal">
   <div className="modal-box ">
   <Elements stripe={stripePromise}>
@@ -80,9 +84,9 @@ console.log(prices)
 
 {/* pro */}
 
-<div className="flex flex-grow flex-col p-6 space-y-6 rounded shadow sm:p-8 dark:bg-gray-900">
+<div className="flex flex-grow flex-col p-6 hover:bg-yellow-400 space-y-6 rounded shadow sm:p-8 dark:bg-gray-900">
 					<div className="space-y-2">
-						<h4 className="text-2xl font-bold">Beginner</h4>
+						<h4 className="text-2xl font-bold">Pro</h4>
 						<span className="text-6xl font-bold">$20</span>
 					</div>
 					
@@ -99,7 +103,7 @@ console.log(prices)
 {/* modal */}
 
 <div  onClick={()=>setPrices(20)}>
- <button className="btn" onClick={()=>document.getElementById('my_modal_2').showModal()}>Get Started</button>
+ <button className="btn w-full" onClick={()=>document.getElementById('my_modal_2').showModal()}>Get Started</button>
 <dialog id="my_modal_2" className="modal">
   <div className="modal-box ">
   <Elements stripe={stripePromise}>
@@ -129,9 +133,9 @@ console.log(prices)
 {/* advance */}
 
 
-<div className="flex flex-grow flex-col p-6 space-y-6 rounded shadow sm:p-8 dark:bg-gray-900">
+<div className="flex flex-grow flex-col p-6 hover:bg-yellow-400 space-y-6 rounded shadow sm:p-8 dark:bg-gray-900">
 					<div className="space-y-2">
-						<h4 className="text-2xl font-bold">Beginner</h4>
+						<h4 className="text-2xl font-bold">Advance</h4>
 						<span className="text-6xl font-bold">$50</span>
 					</div>
 					
@@ -148,7 +152,7 @@ console.log(prices)
 {/* modal */}
 
  <div  onClick={()=>setPrices(50)}>
- <button className="btn" onClick={()=>document.getElementById('my_modal_3').showModal()}>Get Started</button>
+ <button className="btn w-full" onClick={()=>document.getElementById('my_modal_3').showModal()}>Get Started</button>
 <dialog id="my_modal_3" className="modal">
   <div className="modal-box ">
   <Elements stripe={stripePromise}>

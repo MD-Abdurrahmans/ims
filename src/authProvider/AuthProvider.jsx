@@ -8,7 +8,7 @@ export const AuthContext  = createContext(auth);
 const googleProvider = new GoogleAuthProvider();
 const AuthProvider = ({children}) => {
     const [user,setUser] = useState(null);
-    const [loading,setLoading] = useState(null);
+    const [loading,setLoading] = useState(true);
     const [manager,setManager]= useState(null)
     const axiosSecure = useAxiosSecure();
 
@@ -51,12 +51,25 @@ const AuthProvider = ({children}) => {
 
     // onAuthStateChange
     useEffect(() => {
-
+        
         const unsubscribe = onAuthStateChanged(auth, (currentUser) => {
           setUser(currentUser);
+          const emails = user?.email || currentUser?.email;
+          setLoading(false);
+          if(currentUser){
+            axiosSecure.post('/jwt',{email:emails})
+            .then((res)=>{console.log(res.data)})
+          }else{
+            // setLoading(true);
+
+             axiosSecure.post('/logOut')
+             .then((res)=>{console.log(res.data)})
+          }
           console.log("CurrentUser-->", currentUser);
          
-      setLoading(false);
+      
+   
+
         });
         return () => {
           return unsubscribe();
@@ -68,7 +81,15 @@ const AuthProvider = ({children}) => {
 
 
 
-      }, []);
+      }, [user?.email]);
+
+
+      // jwt 
+
+
+
+
+    
 
 
 
@@ -76,13 +97,13 @@ const AuthProvider = ({children}) => {
       useEffect(()=>{
 
                              
-      if( user?.email){
+      if(user){
 
 
         axiosSecure.get(`/role/${user?.email}`)
         .then((res)=>{
-         setManager(res.data)
-         console.log('getRole', res.data)
+         setManager(res?.data)
+        //  console.log('findShop', res?.data)
        
        })
      
@@ -93,9 +114,10 @@ const AuthProvider = ({children}) => {
 
          setManager(false)
       }
-      },[user?.email])
+      },[axiosSecure,user])
 
 
+      console.log('findShop',manager)
 
 
 
@@ -112,6 +134,7 @@ const AuthProvider = ({children}) => {
         manager,
       }
 
+      console.log('loadin',loading)
   return (
 
 

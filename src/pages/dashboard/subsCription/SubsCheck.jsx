@@ -2,6 +2,7 @@ import { CardElement, useElements, useStripe } from "@stripe/react-stripe-js"
 import {  useEffect, useState } from "react";
 import useAxiosSecure from "../../../hooks/useAxiosSecure";
 import useAuth from "../../../hooks/useAuth";
+import Halmet from "../../../shared/helmet/Halmet";
 
 
 const SubsCheck = ({amount}) => {
@@ -33,7 +34,7 @@ const SubsCheck = ({amount}) => {
 
 
 
-     },[amounts])
+     },[axiosSecure, amounts])
 
     const handleSubmit = async(event)=>{
 
@@ -93,9 +94,9 @@ const SubsCheck = ({amount}) => {
              console.log('paymentsIntente',paymentIntent)
         
 
-          const p =    paymentIntent.amount /100;
+          const p =    (paymentIntent.amount /100);
 
-           
+           console.log('pppppppppp',p)
            
         //   if(p===10){
         //     setIncrease(200)
@@ -111,10 +112,19 @@ const SubsCheck = ({amount}) => {
         //     setIncrease(3)
         //   }
 
-        const limit = p===10?200: p===20?450: p===30?1500:0
-           
+        let limit = p===10?200 : p===20?450: p===30?1500 : 0
+           console.log('lllllllll',limit)
              axiosSecure.patch(`/limitProduct/${user?.email}`,{limit:limit,balance:p})
-             .then((res)=>{console.log('bowa', res.data)})
+             .then((res)=>{
+              console.log('bowa', res.data)
+
+               if(res.data?.updateLimit.modifiedCount>0 && res.data?.updateAdmin.modifiedCount>0){
+
+                alert('Payment successful')
+                
+               }
+            
+            })
 
            }
 
@@ -131,6 +141,10 @@ const SubsCheck = ({amount}) => {
 
   return (
     <div className="my-9">
+
+
+<Halmet title={'subCheck'} ></Halmet>
+       
        <form onSubmit={handleSubmit}>
 
 

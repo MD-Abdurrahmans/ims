@@ -1,45 +1,144 @@
 import useSales from "../../../hooks/useSales"
+import SectionTitle from "../../../shared/sectionTitle/SectionTitle";
+import { MdPointOfSale } from "react-icons/md";
+import { FaMoneyBillTrendUp } from "react-icons/fa6";
+import { RiMoneyDollarCircleFill } from "react-icons/ri";
+
+// chart
+
+import React, { PureComponent } from 'react';
+import {
+  ComposedChart,
+  Line,
+  Area,
+  Bar,
+  XAxis,
+  YAxis,
+  CartesianGrid,
+  Tooltip,
+  Legend,
+  ResponsiveContainer,
+} from 'recharts';
 
 
 const SalesSummary = () => {
 
+  const [salesProducts] = useSales();
+  console.log('tottt',salesProducts)
 
-    const [salesProducts] = useSales();
-console.log('tottt',salesProducts)
+ const profit =  salesProducts?.totalSalePrice - salesProducts?.productionCost;
+  const data = [
+  
+    {
+      name: 'Invest',
+      uv: salesProducts?.productionCost,
+      pv: 800,
+      amt: 1400,
+    },
+    {
+      name: 'Profit',
+      uv: `${profit}`,
+      pv: 967,
+      amt: 1506,
+    },
+    {
+      name: 'Income',
+      uv:  `${salesProducts?.totalSalePrice}`,
+  
+      pv: 1098,
+      amt: 989,
+    },
+  
+  ];
+
+
+
+
+
+  
   return (
-    <div>
-          salesSummaryr
+    <div className="">
+          
 
-          <div className="stats shadow">
+ <div>
+
   
-  <div className="stat">
+ <div className="my-8">
+             <SectionTitle heading={'Sales Summary'}  subHeading={'MONITOR ALL SALES'} ></SectionTitle>
+           </div>
+
+ <div className="grid  grid-cols-1 md:grid-cols-2">
+  
+
+
+  <div className=" p-8 bg-amber-500 text-white">
     <div className="stat-figure text-secondary">
-      <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" className="inline-block w-8 h-8 stroke-current"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M13 16h-1v-4h-1m1-4h.01M21 12a9 9 0 11-18 0 9 9 0 0118 0z"></path></svg>
+<MdPointOfSale className="text-4xl text-white"/>
     </div>
-    <div className="stat-title">Total Sale</div>
-    <div className="stat-value">{salesProducts?.totalSale}</div>
-    <div className="stat-desc">Jan 1st - Feb 1st</div>
+    <div className="stat-title text-3xl">Total Sale</div>
+    <div className="stat-value">QTY:{salesProducts?.quantity}</div>
+    {/* <div className="stat-desc">Jan 1st - Feb 1st</div> */}
   </div>
   
-  <div className="stat">
+  <div className="p-8  bg-orange-600 text-white">
     <div className="stat-figure text-secondary">
-      <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" className="inline-block w-8 h-8 stroke-current"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M12 6V4m0 2a2 2 0 100 4m0-4a2 2 0 110 4m-6 8a2 2 0 100-4m0 4a2 2 0 110-4m0 4v2m0-6V4m6 6v10m6-2a2 2 0 100-4m0 4a2 2 0 110-4m0 4v2m0-6V4"></path></svg>
+    <RiMoneyDollarCircleFill className="text-4xl text-white"/>
     </div>
-    <div className="stat-title">Total Invest</div>
-    <div className="stat-value">{salesProducts?.productionCost.toFixed(2)}</div>
-    <div className="stat-desc">↗︎ 400 (22%)</div>
+    <div className="stat-title text-3xl">Total Invest</div>
+    <div className="stat-value"> $ {salesProducts?.productionCost.toFixed(2)}</div>
+    {/* <div className="stat-desc">↗︎ 400 (22%)</div> */}
   </div>
   
-  <div className="stat">
+  <div className="  p-10  bg-green-500">
     <div className="stat-figure text-secondary">
-      <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" className="inline-block w-8 h-8 stroke-current"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M5 8h14M5 8a2 2 0 110-4h14a2 2 0 110 4M5 8v10a2 2 0 002 2h10a2 2 0 002-2V8m-9 4h4"></path></svg>
+    <FaMoneyBillTrendUp className="text-4xl text-white"/>
     </div>
-    <div className="stat-title">Total Profit</div>
-    <div className="stat-value">{(salesProducts?.totalSalePrice.toFixed(2)-salesProducts?.productionCost.toFixed(2)).toFixed(2)}</div>
-    <div className="stat-desc">↘︎ 90 (14%)</div>
+    <div className="stat-title text-3xl">Total Profit</div>
+    <div className="stat-value">${salesProducts?.totalSalePrice.toFixed(2)-salesProducts?.productionCost}</div>
+    {/* <div className="stat-desc">↘︎ 90 (14%)</div> */}
+  </div>
+  
+  
+  <div className="p-8    bg-[#A3E635]">
+    <div className="stat-figure text-secondary">
+    <FaMoneyBillTrendUp className="text-4xl text-white"/>
+    </div>
+    <div className="stat-title text-3xl">Total Income</div>
+    <div className="stat-value">${salesProducts?.totalSalePrice.toFixed(2)}</div>
+    {/* <div className="stat-desc">↘︎ 90 (14%)</div> */}
   </div>
   
 </div>
+
+
+ </div>
+
+
+{/* chart start */}
+
+<div className="w-full my-12">
+<ComposedChart
+          width={800}
+          height={400}
+          data={data}
+          margin={{
+            top: 20,
+            right: 20,
+            bottom: 20,
+            left: 20,
+          }}
+        >
+          <CartesianGrid stroke="#f5f5f5" />
+          <XAxis dataKey="name" scale="band" />
+          <YAxis />
+          <Tooltip />
+          <Legend />
+          <Bar dataKey="uv" barSize={20} fill="#413ea0" />
+          <Line type="monotone" dataKey="uv" stroke="#ff7300" />
+        </ComposedChart>
+ 
+</div>
+
     </div>
   )
 }

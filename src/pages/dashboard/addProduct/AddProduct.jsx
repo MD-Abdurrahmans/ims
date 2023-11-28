@@ -4,6 +4,8 @@ import upload from "../../../shared/upload"
 import useAxiosSecure from "../../../hooks/useAxiosSecure";
 import useAuth from "../../../hooks/useAuth";
 import {  useNavigate } from "react-router-dom";
+import SectionTitle from "../../../shared/sectionTitle/SectionTitle";
+import Halmet from "../../../shared/helmet/Halmet";
 
 
 const AddProduct = () => {
@@ -11,7 +13,8 @@ const {manager,user} = useAuth();
 const axiosSecure = useAxiosSecure();
 const navigate = useNavigate();
 
-console.log('m', )
+console.log('m',manager?.email )
+console.log('u',user?.email )
     const {
         register,
         handleSubmit,
@@ -40,7 +43,7 @@ console.log('m', )
                     productDiscount: data.productDiscount             ,
                     productLocation: data.productLocation,
                     profit: data.profit,
-                    productQuantity: data.productQuantity,
+                    productQuantity: parseInt(data.productQuantity),
                     productImage: imageHost,
                     shopId:manager._id,
                     shopName:manager.shopName,
@@ -68,7 +71,7 @@ console.log('m', )
              navigate('/dashboard/subsCription')
          }else{
 
-             if(res.data.acknowledged){
+             if(res.data.result){
 
                  alert("product added")
             }
@@ -91,7 +94,13 @@ console.log('m', )
       }
   return (
     <div>
+          <Halmet title={'addProduct'} ></Halmet>
       
+      <div className="my-10">
+        <SectionTitle  heading={'ADD PRODUCT'} subHeading={'FillUp The Form'} ></SectionTitle>
+      </div>
+
+
        <form  onSubmit={handleSubmit(onSubmit)} >
 
        <div className="grid md:grid-cols-2 gap-2">

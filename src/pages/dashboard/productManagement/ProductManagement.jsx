@@ -4,6 +4,9 @@ import { Link } from "react-router-dom"
 
 import useProducts from "../../../hooks/useProducts";
 import useAxiosSecure from "../../../hooks/useAxiosSecure";
+import SectionTitle from "../../../shared/sectionTitle/SectionTitle";
+import Halmet from "../../../shared/helmet/Halmet";
+import { FaPlus, FaRegEdit, FaTrash } from "react-icons/fa";
 
 
 const ProductManagement = () => {
@@ -59,12 +62,19 @@ const handleDelete = async(id)=>{
 
   return (
     <div>
-          <div className="flex justify-between py-7">
-             <h1>TOtal 3 Product Added</h1>
-              <div className="flex justify-center items-center  px-4 py-2"> 
-                <Link className="bg-blue-700 text-white px-4 py-2" to='/dashboard/addProduct'> Add Product</Link>
+          <Halmet title={'productManagement'} ></Halmet>
+          
+
+           <div className="my-9">
+           <SectionTitle heading={'PRODUCTS MANAGEMENT'} ></SectionTitle>
+           </div>
+
+            
+              <div className="flex justify-between w-full items-center  px-4 py-2 border my-8"> 
+              <h1 className="font-semibold">TOTAL {products?.length} Product Added</h1>
+                <Link className="bg-blue-700 text-white px-4 py-2 flex items-center" to='/dashboard/addProduct'><FaPlus className="mr-1"/>  Add Product</Link>
               </div>
-          </div>
+        
 
           {/* manger product list  */}
 
@@ -77,14 +87,14 @@ const handleDelete = async(id)=>{
 <div className="overflow-x-auto">
   <table className="table">
     {/* head */}
-    <thead>
+    <thead className="bg-yellow-400  text-white">
       <tr>
          <th>Product Image</th>
         <th>product Name</th>
         <th>Product Quantity</th>
         <th> Sale Count</th>
-         <th>Actions</th>
-         <th></th>
+         <th>Update</th>
+         <th>Delete</th>
       </tr>
     </thead>
     <tbody>
@@ -92,7 +102,7 @@ const handleDelete = async(id)=>{
    
  {
    products?.map((product)=><>
-      <tr>
+      <tr className="hover:bg-slate-400  hover:text-white">
      
      <td>
        <div className="flex items-center gap-3">
@@ -116,11 +126,11 @@ const handleDelete = async(id)=>{
      </td>
      <th>
        <Link to={`/dashboard/updateProduct/${product?._id}`}>
-       <button className="btn btn-ghost btn-xs">Update</button>
+       <button className=""><FaRegEdit className="text-3xl text-green-600"  /></button>
        </Link>
      </th>
      <th>
-       <button onClick={()=>handleDelete(product?._id)}  className="btn btn-ghost btn-xs">Delete</button>
+       <button onClick={()=>handleDelete(product?._id)}  className=""><FaTrash className="text-3xl text-red-600"/></button>
      </th>
    </tr>
    

@@ -1,11 +1,22 @@
 import { NavLink } from "react-router-dom"
 import Container from "../../shared/Container"
 import useAuth from "../../hooks/useAuth"
-
-
+import useRole from "../../hooks/useRole";
+import logo  from'../../../public/logo.png';
+import { IoHomeSharp } from "react-icons/io5";
+import { FaShopLock } from "react-icons/fa6";
+import { IoIosPlayCircle } from "react-icons/io";
+import { MdSpaceDashboard } from "react-icons/md";
+import { RiLogoutBoxFill } from "react-icons/ri";
+import { LiaUnlockAltSolid } from "react-icons/lia"
+import { GiUnlocking } from "react-icons/gi";
+import Lottie from "lottie-react";
+import navLogo from '../../assets/inventory.json';
 const Navbar = () => {
-const {user,logOut,manager} = useAuth();
+const {user,logOut} = useAuth();
+const [Role] = useRole();
 
+// console.log('publick', Role.role)
 // console.log('manager',manager)
 // logout 
 
@@ -18,36 +29,39 @@ const handleLogout =()=>{
 
     const  links = <>
     
-    
-         
-    <li>
-        <NavLink to='/'>Home</NavLink>
+        
+    <li >
+        <NavLink to='/'  className={({ isActive}) =>isActive ? "bg-[#1D4ED8] border-0 text-white " : "text-white"
+  }  > <IoHomeSharp/>  Home</NavLink>
     </li>
-    <li>
-        <NavLink to='/createShop'>Create Shop</NavLink>
-    </li>
-    <li>
-        <NavLink to='https://youtu.be/r_2PRJxCakg?si=Qm_AYtk5TwnvKy_p'  target="_blank"  >Watch Demo</NavLink>
+
+    <li className="hover:bg-[#1D4ED8] rounded-md " >
+     <NavLink to='/createShop' className={({ isActive}) =>isActive ? "bg-[#1D4ED8] border-0 text-white " : "text-white"
+  }> <FaShopLock/> Create Shop</NavLink>
+ </li>
+
+
+    <li className="hover:bg-[#1D4ED8] rounded-md ">
+        <NavLink to='https://youtu.be/r_2PRJxCakg?si=Qm_AYtk5TwnvKy_p'  className={({ isActive}) =>isActive ? "bg-[#1D4ED8] border-0 text-white " : "text-white"
+  }  target="_blank"><IoIosPlayCircle/> Watch Demo</NavLink>
        
     </li>
 
 
+    <li className="hover:bg-[#1D4ED8] rounded-md " >
+     <NavLink to='dashboard'> <MdSpaceDashboard/> Dashboard</NavLink>
+    </li>
 
-   {
-     manager && 
 
-     <li>
-     <NavLink to='/dashboard'>Dashboard</NavLink>
- </li>
 
-   }
+  
 
 
  {
   user && 
 
-  <li>
-     <button onClick={handleLogout} className=""  >Logout</button>
+  <li className="hover:bg-[#1D4ED8] rounded-md " >
+     <button onClick={handleLogout} className="">  <RiLogoutBoxFill/> Logout</button>
 </li>
  }
 
@@ -57,11 +71,11 @@ const handleLogout =()=>{
 
   <>
       <li>
-      <NavLink to='/register'>Register</NavLink>
+      <NavLink to='/register'> <GiUnlocking className="text-2xl"/> Register</NavLink>
   </li>
 
    <li>
-   <NavLink to='/login'>Login</NavLink>
+   <NavLink to='/login'> <LiaUnlockAltSolid className="text-2xl" /> Login</NavLink>
 </li>
   </>
  }
@@ -70,11 +84,11 @@ const handleLogout =()=>{
     </>
 
   return (
-    <div className="bg-base-300">
+    <div className=" bg-gradient-to-r from-[#1F2937] to-[#52525B] text-white">
 
 
  <Container>
- <div className="navbar ">
+ <div className="navbar  max-w-[1520px] mx-auto ">
   <div className="navbar-start">
     <div className="dropdown">
       <label tabIndex={0} className="btn btn-ghost lg:hidden">
@@ -84,7 +98,11 @@ const handleLogout =()=>{
        {links}
       </ul>
     </div>
-    <a className="btn btn-ghost text-xl">daisyUI</a>
+    <a className="btn btn-ghost text-xl flex items-center">
+       {/* <img src={logo} className="h-14"  alt="" /> */}
+       <Lottie className="h-16" loop={false} animationData={navLogo}></Lottie>
+       <span className="md:text-3xl text-[#0EA5E9] font-bold ">IMS</span>
+    </a>
   </div>
   <div className="navbar-center hidden lg:flex">
     <ul className="menu menu-horizontal px-1">
@@ -97,14 +115,18 @@ const handleLogout =()=>{
     user && 
 
 
-    <div className="navbar-end">
+    <div className="navbar-end hidden md:block">
       
-    <span className="mr-2">{user?.displayName}</span>
+ <div className="flex items-center">
+ <span className="px-4">{user?.displayName}</span>
 <div className="avatar">
 <div className="w-10 rounded-full ring ring-primary ring-offset-base-100 ring-offset-2">
   <img src={user?.photoURL} />
 </div>
 </div>
+ </div>
+
+
 </div>
   }
 
