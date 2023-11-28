@@ -9,7 +9,7 @@ const useProducts = () => {
 const axiosSecure = useAxiosSecure();
 const {manager} = useAuth();
 
-    const {data:Products,refetch ,isLoading} = useQuery({
+    const {data:Products,refetch,isLoading} = useQuery({
 
        
          queryKey:['products'],

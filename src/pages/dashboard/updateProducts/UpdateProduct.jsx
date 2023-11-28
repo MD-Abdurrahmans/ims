@@ -1,10 +1,11 @@
 import { useForm } from "react-hook-form"
-import { useParams } from "react-router-dom"
+import { useNavigate, useParams } from "react-router-dom"
 import useProducts from "../../../hooks/useProducts";
 import useAxiosSecure from "../../../hooks/useAxiosSecure";
 import upload from "../../../shared/upload";
 import useAuth from "../../../hooks/useAuth";
 import Halmet from "../../../shared/helmet/Halmet";
+import Swal from "sweetalert2";
 
 
 const UpdateProduct = () => {
@@ -13,7 +14,7 @@ const UpdateProduct = () => {
   const params =  useParams();
   const axiosSecure = useAxiosSecure();
   // console.log('update',params)
-
+ const navigate = useNavigate();
 
   const updateItem = products?.find((product)=>product._id  === params.id);
 
@@ -66,8 +67,32 @@ const UpdateProduct = () => {
 
    if(res.data.matchedCount>0){
 
-    alert("update products")
+    // alert("update products")
+    Swal.fire({
+      title: "Product Updated Succussfully",
+      width: 600,
+      padding: "3em",
+      color: "#1D4ED8",
+      background: "#06B6D4 url(/images/trees.png)",
+      backdrop: `
+        rgba(0,0,123,0.4)
+        url("/images/nyan-cat.gif")
+        left top
+        no-repeat
+      `
+    });
     refetch()
+      
+    navigate('/dashboard/productManagement')
+   }else{
+
+
+    Swal.fire({
+      icon: "error",
+      title: "Oops... Not Updated",
+      text: "Something went wrong! try again later",
+   
+    });
    }
       }
  

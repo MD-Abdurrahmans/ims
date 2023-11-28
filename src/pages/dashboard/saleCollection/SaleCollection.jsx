@@ -5,31 +5,36 @@ import useAxiosSecure from "../../../hooks/useAxiosSecure";
 import Halmet from "../../../shared/helmet/Halmet";
 import SectionTitle from "../../../shared/sectionTitle/SectionTitle";
 import { FaSearch } from "react-icons/fa";
-
+import { GiSwordSpin } from "react-icons/gi";
 
 
 const SaleCollection = () => {
   const axiosSecure = useAxiosSecure();
  const [searches,setSearches] = useState();
  const [ss,setss] = useState()
- const  [products] = useProducts();
+ const [loadings,setLoadings] = useState(null);
+ const  [products,,,isLoading] = useProducts();
     
-console.log(products)
-       console.log(ss)
+    // console.log(products)
+    //    console.log(ss)
 
     useEffect(()=>{
-
+     
      if(searches){
+   
       axiosSecure.get(`/products?search=${searches}`)
       .then((res)=>{
       //  console.log(res.data)
+      
        setss(res.data)
+      
       })
      }
     },[axiosSecure,searches])
 
     // handle search
-
+// console.log('ss',ss)
+// console.log('products',products)
 
     const handleSearch = (e)=>{
 
@@ -39,6 +44,11 @@ console.log(products)
       setSearches(searchText)
       // console.log(searchText)
     }
+
+   if(loadings){
+
+        return <div><GiSwordSpin className="text-5xl flex  justify-center items-center min-h-full  text-center animate-spin  text-[#1D4ED8] " /></div>
+      }
 
 
   return (
@@ -64,7 +74,7 @@ console.log(products)
 
 
          <div>
-         <div className="overflow-x-auto">
+         <div className="">
   <table className="table">
     {/* head */}
     <thead className="bg-yellow-400 text-white">
@@ -85,7 +95,7 @@ console.log(products)
 
 
 
-ss?   ss?.map((product)=><>
+  ss?   ss?.map((product)=><>
 <tr className="hover:bg-slate-400  hover:text-white">
 <td>
 {product?._id} 
@@ -121,62 +131,63 @@ ss?   ss?.map((product)=><>
 
 <td>
 <Link to={`/dashboard/checkOut/${product._id}`}>
-  <button className="btn btn-sm bg-pink-600 text-white"> Process to Checkout
+  <button className="btn btn-sm bg-[#16A34A] border-0 text-white"> Process to 
 </button>
 </Link>
-</td>
+</td> 
 
 </tr>
 
-</>)
+  </>)
 
-:
+  :
 
-products?.map((product)=><>
-<tr className="hover:bg-slate-400  hover:text-white">
-<td>
-{product?._id} 
 
-</td>
-<td>
- <div className="flex items-center gap-3">
-   <div className="avatar">
-     <div className="mask mask-squircle w-12 h-12">
-       <img src={product?.productImage} alt="Avatar Tailwind CSS Component" />
+  products?.map((product)=><>
+  <tr  key={product?._id} className="hover:bg-slate-400  hover:text-white">
+  <td>
+  {product?._id} 
+  
+  </td>
+  <td>
+   <div className="flex items-center gap-3">
+     <div className="avatar">
+       <div className="mask mask-squircle w-12 h-12">
+         <img src={product?.productImage} alt="Avatar Tailwind CSS Component" />
+       </div>
      </div>
+  
    </div>
-
- </div>
-</td>
-
-<td>
-{product?.productName} 
-
-</td>
-<td>
-{product?.productQuantity} 
-</td>
-
- <td>
-{product?.productDiscount} %
+  </td>
   
- </td>
- <td>
-{product?.sellingPrice} 
+  <td>
+  {product?.productName} 
   
- </td>
-
-<td>
-<Link to={`/dashboard/checkOut/${product._id}`}>
-  <button className="btn bg-pink-600 text-white btn-sm"> Process to Checkout
-</button>
-</Link>
-</td>
-
-</tr>
-
-</>)
-
+  </td>
+  <td>
+  {product?.productQuantity} 
+  </td>
+  
+   <td>
+  {product?.productDiscount} %
+    
+   </td>
+   <td>
+  {product?.sellingPrice} 
+    
+   </td>
+  
+  <td>
+  <Link to={`/dashboard/checkOut/${product._id}`}>
+    <button className="btn bg-[#16A34A] border-0 text-white  btn-sm"> Process to
+  </button>
+  </Link>
+  </td>
+  
+  </tr>
+  
+  </>)
+  
 
 
  }

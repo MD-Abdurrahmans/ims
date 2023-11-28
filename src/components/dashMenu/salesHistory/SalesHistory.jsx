@@ -1,55 +1,22 @@
 import moment from "moment/moment";
 import useSales from "../../../hooks/useSales"
 import SectionTitle from "../../../shared/sectionTitle/SectionTitle";
-import { useEffect, useState } from "react";
-import useAxiosSecure from "../../../hooks/useAxiosSecure";
-import useAuth from "../../../hooks/useAuth";
+import Halmet from "../../../shared/helmet/Halmet";
+
 
 
 const SalesHistory = () => {
-  const axiosSecure = useAxiosSecure();
-  const {user,manager} = useAuth();
-    const [salesProducts] = useSales();
-    const  saleses = salesProducts.sales;
-// console.log(saleses)
- const [perPage,setPerPage] = useState(5);
- const [currentValue,setCurrentValue] = useState(0);
- const pageNumber = Math.ceil(saleses?.length/perPage);
- const pages = [...Array(pageNumber).keys()]
- const [item,setItem] = useState();
 
 
- useEffect(()=>{
- axiosSecure.get(`/sales/${manager._id}?page=${currentValue}&size=${perPage}`)
- .then((res)=>{
-  
-  // console.log(res.data.sales)
-
-   setItem(res.data.sales)
-
-})
-         
- },[currentValue])
+  const [salesProducts] = useSales();
 
 
- console.log('ii', item)
-// handle btn 
-
-const handleBtn =(e)=>{
-
-   e.preventDefault();
-const value =  parseInt(e.target.value);
- console.log(e.target.value)
- setCurrentValue(value)
-
-}
-
-
+console.log(salesProducts)
 
   return (
     <div>
 
-
+ <Halmet title={'Sale History'} ></Halmet>
 <div>
 <div className="my-11"> 
 
@@ -75,7 +42,7 @@ const value =  parseInt(e.target.value);
  {/* TODO:MAKEUP THIS ALL ORDER IN DATE SORTING ORDER  */}
 
 {
- item?.map((sale,index)=><>
+ salesProducts?.sales?.map((sale,index)=><>
  
 
  <tr className="hover:bg-slate-500 hover:text-white" >
@@ -86,7 +53,7 @@ const value =  parseInt(e.target.value);
    </tr>
 
  </>)
-}
+} 
  
 
 
@@ -97,17 +64,7 @@ const value =  parseInt(e.target.value);
 </div>
 
 
- {/* pagination */}
 
-
- <div className="max-w-md mx-auto my-9" >
- <span className="text-3xl font-bold">pages: </span>
- {
-    pages?.map((page)=><>
-    <button onClick={handleBtn} className={`btn btn-outline ${currentValue === page ? 'bg-yellow-400 text-white':''}`}  value={page} >{page}</button>
-    </>)
-  }
- </div>
 
     </div>
   )

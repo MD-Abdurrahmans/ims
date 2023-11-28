@@ -1,6 +1,7 @@
 import Container from "../../shared/Container"
 import Halmet from "../../shared/helmet/Halmet"
 import CalltoAction from "./components/CalltoAction"
+import ContactUs from "./components/ContactUs"
 import Faq from "./components/Faq"
 import Plane from "./components/Plane"
 import Team from "./components/Team"
@@ -38,6 +39,11 @@ const Home = () => {
 
 {/* FAQ? */}
 <Faq/>
+
+{/* contact us */}
+
+
+<ContactUs/>
 </Container>
  </div>
 

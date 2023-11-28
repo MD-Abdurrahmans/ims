@@ -7,6 +7,7 @@ import useAxiosSecure from "../../../hooks/useAxiosSecure";
 import SectionTitle from "../../../shared/sectionTitle/SectionTitle";
 import Halmet from "../../../shared/helmet/Halmet";
 import { FaPlus, FaRegEdit, FaTrash } from "react-icons/fa";
+import Swal from "sweetalert2";
 
 
 const ProductManagement = () => {
@@ -39,19 +40,42 @@ const [products,refetch] = useProducts();
 
 
 const handleDelete = async(id)=>{
+  Swal.fire({
+    title: "Are you sure?",
+    text: "You won't be able to revert this!",
+    icon: "warning",
+    showCancelButton: true,
+    confirmButtonColor: "#16A34A",
+    cancelButtonColor: "#DC2626",
+    confirmButtonText: "Yes, delete it!"
+  }).then(async(result) => {
+    if (result.isConfirmed) {
+
+      const res = await  axiosSecure.delete(`/productDelete/${id}`)
 
 
-  const res = await  axiosSecure.delete(`/productDelete/${id}`)
+      console.log('d', res)
+        if(res.data.deletedCount>0){
+    
+          // alert('deleted succeed')
+          Swal.fire({
+            title: "Deleted!",
+            text: "Your Product has been deleted.",
+            icon: "success"
+          });
+          refetch()
+    
+    
+        }
 
 
-  console.log('d', res)
-    if(res.data.deletedCount>0){
-
-      alert('deleted succeed')
-      refetch()
+    
 
 
     }
+  });
+
+
 
 
 

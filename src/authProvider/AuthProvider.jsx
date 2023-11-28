@@ -56,15 +56,28 @@ const AuthProvider = ({children}) => {
           setUser(currentUser);
           const emails = user?.email || currentUser?.email;
           setLoading(false);
-          if(currentUser){
-            axiosSecure.post('/jwt',{email:emails})
-            .then((res)=>{console.log(res.data)})
-          }else{
-            // setLoading(true);
 
-             axiosSecure.post('/logOut')
-             .then((res)=>{console.log(res.data)})
-          }
+
+                         
+      if(user || currentUser){
+
+
+        axiosSecure.get(`/role/${emails}`)
+        .then((res)=>{
+         setManager(res?.data)
+         console.log('findShop', res?.data)
+       
+       })
+     
+
+      
+
+      }else{
+
+         setManager(false)
+      }
+
+
           console.log("CurrentUser-->", currentUser);
          
       
@@ -81,41 +94,26 @@ const AuthProvider = ({children}) => {
 
 
 
-      }, [user?.email]);
+      }, [axiosSecure, user]);
 
-
-      // jwt 
-
-
-
-
-    
-
-
-
-
-      useEffect(()=>{
-
-                             
-      if(user){
-
-
-        axiosSecure.get(`/role/${user?.email}`)
-        .then((res)=>{
-         setManager(res?.data)
-        //  console.log('findShop', res?.data)
-       
-       })
-     
 
       
 
+
+      if(user){
+
+         axiosSecure.post('/jwt',{user:user?.email})
+         .then((res)=>{
+          console.log(res.data)
+         })
       }else{
 
-         setManager(false)
+        axiosSecure.post('/logout',{user:user?.email})
+        .then((res)=>{console.log(res)})
       }
-      },[axiosSecure,user])
 
+
+      
 
       console.log('findShop',manager)
 

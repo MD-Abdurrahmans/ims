@@ -7,6 +7,7 @@ import useAuth from "../../hooks/useAuth";
 import { MdPlaylistAddCheckCircle,MdPayment } from "react-icons/md";
 import { TbLogout2 } from "react-icons/tb";
 import { useState } from "react";
+import Swal from "sweetalert2";
 
 
 const Menu = () => {
@@ -22,14 +23,47 @@ const [toggle,setToggle] = useState(true);
 
   const handleLogout  = ()=>{
 
-    logOut()
-    .then(()=>{
+    Swal.fire({
+      title: "Are you sure?",
+      text: "You want to logout",
+      icon: "warning",
+      showCancelButton: true,
+      confirmButtonColor: "#3085d6",
+      cancelButtonColor: "#d33",
+      confirmButtonText: "Yes, logout"
+    }).then((result) => {
+      if (result.isConfirmed) {
 
-      alert("logout successfull")
-    })
+        logOut()
+        .then(()=>{
+    
+          // alert("logout successfull")
+
+
+          Swal.fire({
+            title: "Logout!",
+            text: "logout done.",
+            icon: "success"
+          });
+
+        })
+    
+
+
+      }
+    });
+
+ 
+
+
   }
 
+
 console.log(toggle)
+
+
+   
+
   return (
 
     <>
@@ -45,8 +79,11 @@ console.log(toggle)
 
 <div onClick={ ()=> setToggle(!toggle)} className="fixed block  md:hidden z-40 ml-8 mt-2 ">
     
-<button  className="" ><FaList className="text-3xl"/></button>
+<button  className="" ><FaList className="text-3xl text-[#1D4ED8] "/></button>
 </div>
+
+
+
 
 {/* smaill  */}
 <div className={`absolute w-full md:hidden  md:relative md:w-full z-30 bg-[#1E40AF]  ${toggle?'-translate-x-full':'translate-x-0'}   text-white flex flex-col md:px-5   min-h-screen space-y-5  md:text-center`}>
@@ -113,12 +150,12 @@ LOGOUT
 
            {/* <NavLink to='/dashboard/home' className='hover:underline' >Home</NavLink> */}
         
-         <NavLink to='/dashboard/productManagement' className='hover:underline font-bold flex  items-center gap-2 justify-center'  ><FaShop className="md:text-3xl"/> Product manage</NavLink>
-
-         <NavLink to='/dashboard/saleCollection' className='hover:underline  font-bold flex  items-center gap-2 justify-center'> <MdPlaylistAddCheckCircle className="md:text-3xl"/> Sale Collection</NavLink>
-         <NavLink to='/dashboard/subsCription' className='hover:underline  flex  items-center gap-2 justify-center' ><MdPayment className="md:text-3xl" /> Subscription </NavLink>
-         <NavLink to='/dashboard/salesSummary' className='hover:underline flex  items-center gap-2 justify-center' > <MdOutlineSummarize className="md:text-3xl"/> Sales Summary</NavLink>
-         <NavLink to='/dashboard/salesHistory' className='hover:underline flex  items-center gap-2 justify-center' > <FaHistory className="md:text-2xl"/> Sales History</NavLink>
+         <NavLink     to='/dashboard/productManagement' className='hover:underline font-bold flex  items-center gap-2 justify-center'  ><FaShop className="md:text-3xl"/> Product manage</NavLink>
+ 
+         <NavLink    to='/dashboard/saleCollection' className='hover:underline  font-bold flex  items-center gap-2 justify-center'> <MdPlaylistAddCheckCircle className="md:text-3xl"/> Sale Collection</NavLink>
+         <NavLink    to='/dashboard/subsCription' className='hover:underline  flex  items-center gap-2 justify-center' ><MdPayment className="md:text-3xl" /> Subscription </NavLink>
+         <NavLink    to='/dashboard/salesSummary' className='hover:underline flex  items-center gap-2 justify-center' > <MdOutlineSummarize className="md:text-3xl"/> Sales Summary</NavLink>
+         <NavLink    to='/dashboard/salesHistory' className='hover:underline flex  items-center gap-2 justify-center' > <FaHistory className="md:text-2xl"/> Sales History</NavLink>
          
 
          <div className="divider text-white bg-white h-1"></div>

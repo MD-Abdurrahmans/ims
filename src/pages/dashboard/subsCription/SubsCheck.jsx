@@ -3,6 +3,9 @@ import {  useEffect, useState } from "react";
 import useAxiosSecure from "../../../hooks/useAxiosSecure";
 import useAuth from "../../../hooks/useAuth";
 import Halmet from "../../../shared/helmet/Halmet";
+import toast from "react-hot-toast";
+import Swal from "sweetalert2";
+import { useNavigate } from "react-router-dom";
 
 
 const SubsCheck = ({amount}) => {
@@ -19,7 +22,7 @@ const SubsCheck = ({amount}) => {
      const [raj,setRaj]= useState(increase)
     // console.log(increase)
  const amounts = parseInt(amount);
-
+const navigate = useNavigate();
      useEffect(()=>{
 
       if(amounts){
@@ -66,9 +69,11 @@ const SubsCheck = ({amount}) => {
           if(error){
 
             console.log('[error]', error);
+            toast.error(error)
             setError(error.message)
           }else{
             console.log('[PaymentMethod]', paymentMethod);
+            // toast.success('method payment succeed')
             setError(' ')
           }
 
@@ -89,14 +94,17 @@ const SubsCheck = ({amount}) => {
 
            if(confirmError){
             console.log('confirm error',confirmError)
+             toast.error(confirmError.message)
+
            }else{
 
              console.log('paymentsIntente',paymentIntent)
         
-
+             toast.success(paymentIntent.status)
+        
           const p =    (paymentIntent.amount /100);
 
-           console.log('pppppppppp',p)
+          //  console.log('pppppppppp',p)
            
         //   if(p===10){
         //     setIncrease(200)
@@ -120,7 +128,17 @@ const SubsCheck = ({amount}) => {
 
                if(res.data?.updateLimit.modifiedCount>0 && res.data?.updateAdmin.modifiedCount>0){
 
-                alert('Payment successful')
+                // alert('Payment successful')
+                
+                Swal.fire({
+                  position: "top-center",
+                  icon: "success",
+                  title: "Your Payment successful",
+                  showConfirmButton: false,
+                  timer: 1500
+                });
+
+                navigate('/dashboard/productManagement')
                 
                }
             

@@ -6,6 +6,7 @@ import useAuth from "../../../hooks/useAuth";
 import {  useNavigate } from "react-router-dom";
 import SectionTitle from "../../../shared/sectionTitle/SectionTitle";
 import Halmet from "../../../shared/helmet/Halmet";
+import Swal from "sweetalert2";
 
 
 const AddProduct = () => {
@@ -17,7 +18,7 @@ console.log('m',manager?.email )
 console.log('u',user?.email )
     const {
         register,
-        handleSubmit,
+        handleSubmit,reset,
   
         formState: { errors },
       } = useForm()
@@ -67,13 +68,29 @@ console.log('u',user?.email )
 
          if(res.data.status =='limited'){
 
-             alert("limited");
+            //  alert("limited");
+
+             Swal.fire({
+              icon: "error",
+              title: "Oops...",
+              text: "Please Pay for Increase Your Limit.limit overload",
+            
+            });
              navigate('/dashboard/subsCription')
          }else{
 
              if(res.data.result){
 
-                 alert("product added")
+                //  alert("product added")
+                 Swal.fire({
+                  position: "top-end",
+                  icon: "success",
+                  title: "Product Added ",
+                  showConfirmButton: false,
+                  timer: 1500
+                });
+                reset();
+                navigate('/dashboard/productManagement')
             }
          }
 

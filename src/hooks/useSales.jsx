@@ -8,10 +8,10 @@ const axiosSecure = useAxiosSecure();
 const {user,manager} = useAuth();
     const {data:salesProducts} = useQuery({
 
-         queryKey:['sales'],
+         queryKey:['selling'],
          queryFn: async()=>{
 
-            const res = await  axiosSecure.get(`/sales/${manager._id}`)
+            const res = await  axiosSecure.get(`/sales/${manager?._id}`)
             return res.data
 
          }

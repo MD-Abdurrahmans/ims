@@ -19,6 +19,7 @@ import {
   Legend,
   ResponsiveContainer,
 } from 'recharts';
+import Halmet from "../../../shared/helmet/Halmet";
 
 
 const SalesSummary = () => {
@@ -59,6 +60,8 @@ const SalesSummary = () => {
   return (
     <div className="">
           
+
+          <Halmet title={'Sale Summary'} ></Halmet>
 
  <div>
 
