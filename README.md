@@ -1,10 +1,15 @@
-# React + Vite
+# INVENTORY MANAGEMENT SYSTEM 
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
 
-Currently, two official plugins are available:
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react/README.md) uses [Babel](https://babeljs.io/) for Fast Refresh
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react-swc) uses [SWC](https://swc.rs/) for Fast Refresh
-"# b8a12-client-side-artorito22" 
-"# b8a12-client-side-artorito22" 
+- [Live-Link: ] (https://myims-d3864.web.app)
+
+
+- i have created a inventory management system for verity shop owner . anyone can create a shop and growing their business .
+
+
+-  it have payment system to increase product add limit 
+
+
+- there are selling monitoring chart to  justify  your  business .
+
