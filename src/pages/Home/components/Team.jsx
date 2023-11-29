@@ -16,10 +16,10 @@ const Team = () => {
 		<div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4">
 
 			
-			<div      data-aos='fli' className="space-y-4">
-				<img alt="" className="md:object-cover md:h-56 w-full md:mx-auto mb-4 md:bg-center rounded-sm dark:bg-gray-500" src="https://images.unsplash.com/photo-1701083266435-a56ea052fb60?w=500&auto=format&fit=crop&q=60&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxlZGl0b3JpYWwtZmVlZHwxOHx8fGVufDB8fHx8fA%3D%3D" />
+			<div      data-aos='flip-up' className="space-y-4  bg-gradient-to-r from-cyan-500 to-blue-500   hover:text-white ">
+				<img alt="" className="md:object-cover    md:h-56 w-full md:mx-auto mb-4 md:bg-center rounded-sm dark:bg-gray-500" src="https://images.unsplash.com/photo-1701083266435-a56ea052fb60?w=500&auto=format&fit=crop&q=60&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxlZGl0b3JpYWwtZmVlZHwxOHx8fGVufDB8fHx8fA%3D%3D" />
 				
-				<div className="flex flex-col items-center">
+				<div className="flex flex-col items-center py-4">
 					<h4 className="text-xl font-semibold">Leroy Jenkins</h4>
 					<p className="text-sm dark:text-gray-400">Member of IMS</p>
 					<div className="flex mt-2 space-x-2">
@@ -42,9 +42,11 @@ const Team = () => {
 				</div>
 			</div>
 
-			<div    data-aos='fli' className="space-y-4">
+
+
+			<div    data-aos='flip-up' className="space-y-4  bg-gradient-to-r from-cyan-500 to-blue-500 hover:text-white">
 				<img alt="" className="md:object-cover md:h-56 w-full md:mx-auto mb-4 md:bg-center rounded-sm dark:bg-gray-500" src="https://images.unsplash.com/photo-1648183185045-7a5592e66e9c?w=500&auto=format&fit=crop&q=60&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxzZWFyY2h8OXx8c2lnbmxlJTIwZW1wbG95JTIwcGhvdG98ZW58MHx8MHx8fDA%3D" />
-				<div className="flex flex-col items-center">
+				<div className="flex flex-col items-center py-4">
 					<h4 className="text-xl font-semibold">Linda caw</h4>
 					<p className="text-sm dark:text-gray-400">Assistant manager</p>
 					<div className="flex mt-2 space-x-2">
@@ -67,9 +69,9 @@ const Team = () => {
 				</div>
 			</div>
 
-			<div    data-aos='fli' className="space-y-4">
+			<div    data-aos='flip-up' className="space-y-4  bg-gradient-to-r from-cyan-500 to-blue-500 hover:text-white">
 				<img alt="" className="md:object-cover md:h-56 w-full md:mx-auto mb-4 md:bg-center rounded-sm dark:bg-gray-500" src="https://images.unsplash.com/photo-1700680247300-a8f777540912?w=500&auto=format&fit=crop&q=60&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxzZWFyY2h8MzV8fHNpZ25sZSUyMGVtcGxveSUyMHBob3RvfGVufDB8fDB8fHww" />
-				<div className="flex flex-col items-center">
+				<div className="flex flex-col items-center py-4">
 					<h4 className="text-xl font-semibold">jasmin chu</h4>
 					<p className="text-sm dark:text-gray-400">Team Leader</p>
 					<div className="flex mt-2 space-x-2">
@@ -95,9 +97,9 @@ const Team = () => {
 
 
 
-			<div    data-aos='fli' className="space-y-4">
+			<div    data-aos='flip-up' className="space-y-4  bg-gradient-to-r from-cyan-500 to-blue-500 hover:text-white">
 				<img alt="" className="md:object-cover md:h-56 w-full md:mx-auto mb-4 md:bg-center rounded-sm dark:bg-gray-500" src="https://images.unsplash.com/photo-1625980221833-ad4f4ed05706?w=500&auto=format&fit=crop&q=60&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxzZWFyY2h8NjN8fHNpZ25sZSUyMGVtcGxveSUyMHBob3RvfGVufDB8fDB8fHww" />
-				<div className="flex flex-col items-center">
+				<div className="flex flex-col items-center py-4">
 					<h4 className="text-xl font-semibold">Leroy Jenkins</h4>
 					<p className="text-sm dark:text-gray-400">Member of IMS</p>
 					<div className="flex mt-2 space-x-2">
@@ -120,9 +122,9 @@ const Team = () => {
 				</div>
 			</div>
 
-			<div    data-aos='fli' className="space-y-4">
+			<div    data-aos='flip-up' className="space-y-4  bg-gradient-to-r from-cyan-500 to-blue-500 hover:text-white">
 				<img alt="" className="md:object-cover md:h-56 w-full md:mx-auto mb-4 md:bg-center rounded-sm dark:bg-gray-500" src="https://images.unsplash.com/photo-1613801183952-a67a399c74c4?w=500&auto=format&fit=crop&q=60&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxzZWFyY2h8Nzh8fHNpZ25sZSUyMGVtcGxveSUyMHBob3RvfGVufDB8fDB8fHww" />
-				<div className="flex flex-col items-center">
+				<div className="flex flex-col items-center py-4">
 					<h4 className="text-xl font-semibold">Linda caw</h4>
 					<p className="text-sm dark:text-gray-400">Assistant manager</p>
 					<div className="flex mt-2 space-x-2">
@@ -145,9 +147,9 @@ const Team = () => {
 				</div>
 			</div>
 
-			<div    data-aos='fli' className="space-y-4">
+			<div    data-aos='flip-up' className="space-y-4  bg-gradient-to-r from-cyan-500 to-blue-500 hover:text-white">
 				<img alt="" className="md:object-cover md:h-56 w-full  md:mx-auto mb-4 md:bg-center rounded-sm dark:bg-gray-500" src="https://images.unsplash.com/photo-1622842182823-28bfbfba47e3?w=500&auto=format&fit=crop&q=60&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxzZWFyY2h8ODF8fHNpZ25sZSUyMGVtcGxveSUyMHBob3RvfGVufDB8fDB8fHww" />
-				<div className="flex flex-col items-center">
+				<div className="flex flex-col items-center py-4">
 					<h4 className="text-xl font-semibold">jasmin chu</h4>
 					<p className="text-sm dark:text-gray-400">Team Leader</p>
 					<div className="flex mt-2 space-x-2">

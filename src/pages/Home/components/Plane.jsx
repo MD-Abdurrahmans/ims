@@ -1,5 +1,6 @@
 import AOS from 'aos';
 import 'aos/dist/aos.css';
+import { Link } from 'react-router-dom';
 AOS.init({
 	duration:1000,
 });
@@ -20,7 +21,7 @@ const Plane = () => {
 		<div className="grid  gap-4 grid-cols-1  mx-auto auto-rows-fr lg:max-w-full lg:gap-2 xl:gap-6 lg:grid-cols-3">
 			
             
-            <div  data-aos="fade-up"  className="  bg-slate-600 text-white   relative z-0 flex flex-col items-center p-8 border rounded-md">
+            <div  data-aos="fade-up"  className=" hover:bg-[#0284C7]  bg-[#075985]  text-white   relative z-0 flex flex-col items-center p-8 border rounded-md">
 				<span className="absolute top-0 px-6 pt-1 pb-2 font-medium rounded-b-lg dark:bg-violet-400 dark:text-gray-900">Personal</span>
 				<p className="my-6 text-4xl font-bold dark:text-violet-400">$10</p>
 				<ul className="flex-1 space-y-2">
@@ -40,12 +41,16 @@ const Plane = () => {
 						<span>Lumet consectetur adipisicing</span>
 					</li>
 				</ul>
-				<button className="px-4 py-2 mt-4 font-semibold uppercase border rounded-lg md:mt-12 sm:py-3 sm:px-8 dark:border-violet-400">Subscribe</button>
+				<Link to='/dashboard/subsCription'>
+      <button className="btn btn-outline text-white ">Subscribe</button>
+
+         </Link>
+
 			</div>
             
 
-            <div data-aos="fade-down"  className="  bg-slate-600 text-white   relative z-0 flex flex-col items-center p-8 border rounded-md">
-				<span className="absolute top-0 px-6 pt-1 pb-2 font-medium rounded-b-lg dark:bg-violet-400 dark:text-gray-900">Personal</span>
+            <div data-aos="fade-down"  className=" hover:bg-[#0284C7]  bg-[#0D9488] text-white   relative z-0 flex flex-col items-center p-8 border rounded-md">
+				<span className="absolute top-0 px-6 pt-1 pb-2 font-medium rounded-b-lg dark:bg-violet-400 dark:text-gray-900">PRO</span>
 				<p className="my-6 text-4xl font-bold dark:text-violet-400">$20</p>
 				<ul className="flex-1 space-y-2">
 					<li className="flex items-center space-x-2">
@@ -64,13 +69,17 @@ const Plane = () => {
 						<span>Lumet consectetur adipisicing</span>
 					</li>
 				</ul>
-				<button className="px-4 py-2 mt-4 font-semibold uppercase border rounded-lg md:mt-12 sm:py-3 sm:px-8 dark:border-violet-400">Subscribe</button>
+				<Link to='/dashboard/subsCription'>
+      <button className="btn btn-outline text-white ">Subscribe</button>
+
+         </Link>
+
 			</div>
 
 
 
-            <div data-aos="fade-up"   className="  bg-slate-600 text-white   relative z-0 flex flex-col items-center p-8 border rounded-md">
-				<span className="absolute top-0 px-6 pt-1 pb-2 font-medium rounded-b-lg dark:bg-violet-400 dark:text-gray-900">Personal</span>
+            <div data-aos="fade-up"   className="hover:bg-[#0284C7]  bg-[#A21CAF] text-white   relative z-0 flex flex-col items-center p-8 border rounded-md">
+				<span className="absolute top-0 px-6 pt-1 pb-2 font-medium rounded-b-lg dark:bg-violet-400 dark:text-gray-900">ADVANCE</span>
 				<p className="my-6 text-4xl font-bold dark:text-violet-400">$50</p>
 				<ul className="flex-1 space-y-2">
 					<li className="flex items-center space-x-2">
@@ -89,7 +98,12 @@ const Plane = () => {
 						<span>Lumet consectetur adipisicing</span>
 					</li>
 				</ul>
-				<button className="px-4 py-2 mt-4 font-semibold uppercase border rounded-lg md:mt-12 sm:py-3 sm:px-8 dark:border-violet-400">Subscribe</button>
+ 
+           <Link to='/dashboard/subsCription'>
+      <button className="btn btn-outline text-white ">Subscribe</button>
+
+         </Link>
+
 			</div>
 
 

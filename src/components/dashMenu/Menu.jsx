@@ -77,7 +77,7 @@ console.log(toggle)
   
 
 
-<div onClick={ ()=> setToggle(!toggle)} className="fixed block  md:hidden z-40 ml-8 mt-2 ">
+<div onClick={ ()=> setToggle(!toggle)} className="absolute right-2  md:hidden z-40 ml-8 mt-2 ">
     
 <button  className="" ><FaList className="text-3xl text-[#1D4ED8] "/></button>
 </div>
@@ -86,7 +86,7 @@ console.log(toggle)
 
 
 {/* smaill  */}
-<div className={`absolute w-full md:hidden  md:relative md:w-full z-30 bg-[#1E40AF]  ${toggle?'-translate-x-full':'translate-x-0'}   text-white flex flex-col md:px-5   min-h-screen space-y-5  md:text-center`}>
+<div className={`absolute  w-full md:hidden  md:relative md:w-full z-30 bg-gradient-to-r from-[#0891B2] to-blue-500  ${toggle?'-translate-x-full':'translate-x-0'}   text-white flex flex-col md:px-5   min-h-screen space-y-5  md:text-center`}>
 
 
 
@@ -107,13 +107,13 @@ console.log(toggle)
            <div className="divider text-white bg-white h-1"></div>
 
            
-         <NavLink to='/dashboard/manageShop' className='hover:underline font-bold flex items-center gap-2 justify-center'  ><FaShop className="md:text-3xl"/>  Mange Shop</NavLink>
-         <NavLink to='/dashboard/adminSaleSummary' className='hover:underline  flex items-center gap-2 justify-center font-bold' > <MdOutlineAttachMoney className="md:text-3xl" />  Sale Summary</NavLink>
-         <NavLink to='/dashboard/users  ' className='hover:underline  flex items-center gap-2 justify-center font-bold' > <FaUsers className="md:text-3xl"></FaUsers> Users</NavLink>
+         <NavLink onClick={()=>setToggle(!toggle)} to='/dashboard/manageShop' className='hover:underline font-bold flex items-center gap-2 justify-center'  ><FaShop className="md:text-3xl"/>  Mange Shop</NavLink>
+         <NavLink  onClick={()=>setToggle(!toggle)}  to='/dashboard/adminSaleSummary' className='hover:underline  flex items-center gap-2 justify-center font-bold' > <MdOutlineAttachMoney className="md:text-3xl" />  Sale Summary</NavLink>
+         <NavLink onClick={()=>setToggle(!toggle)}  to='/dashboard/users  ' className='hover:underline  flex items-center gap-2 justify-center font-bold' > <FaUsers className="md:text-3xl"></FaUsers> Users</NavLink>
 
          <div className="divider text-white bg-white h-1"></div>
 
-         <NavLink to='/  ' className='hover:underline  flex items-center gap-2 justify-center font-bold' > <FaHome className="md:text-3xl"></FaHome>Go Home</NavLink>
+         <NavLink onClick={()=>setToggle(!toggle)} to='/  ' className='hover:underline  flex items-center gap-2 justify-center font-bold' > <FaHome className="md:text-3xl"></FaHome>Go Home</NavLink>
 
 
          <div className="divider text-white bg-white h-1"></div>
@@ -150,16 +150,16 @@ LOGOUT
 
            {/* <NavLink to='/dashboard/home' className='hover:underline' >Home</NavLink> */}
         
-         <NavLink     to='/dashboard/productManagement' className='hover:underline font-bold flex  items-center gap-2 justify-center'  ><FaShop className="md:text-3xl"/> Product manage</NavLink>
+         <NavLink onClick={()=>setToggle(!toggle)}     to='/dashboard/productManagement' className='hover:underline font-bold flex  items-center gap-2 justify-center'  ><FaShop className="md:text-3xl"/> Product manage</NavLink>
  
-         <NavLink    to='/dashboard/saleCollection' className='hover:underline  font-bold flex  items-center gap-2 justify-center'> <MdPlaylistAddCheckCircle className="md:text-3xl"/> Sale Collection</NavLink>
-         <NavLink    to='/dashboard/subsCription' className='hover:underline  flex  items-center gap-2 justify-center' ><MdPayment className="md:text-3xl" /> Subscription </NavLink>
-         <NavLink    to='/dashboard/salesSummary' className='hover:underline flex  items-center gap-2 justify-center' > <MdOutlineSummarize className="md:text-3xl"/> Sales Summary</NavLink>
-         <NavLink    to='/dashboard/salesHistory' className='hover:underline flex  items-center gap-2 justify-center' > <FaHistory className="md:text-2xl"/> Sales History</NavLink>
+         <NavLink onClick={()=>setToggle(!toggle)}    to='/dashboard/saleCollection' className='hover:underline  font-bold flex  items-center gap-2 justify-center'> <MdPlaylistAddCheckCircle className="md:text-3xl"/> Sale Collection</NavLink>
+         <NavLink onClick={()=>setToggle(!toggle)}    to='/dashboard/subsCription' className='hover:underline  flex  items-center gap-2 justify-center' ><MdPayment className="md:text-3xl" /> Subscription </NavLink>
+         <NavLink onClick={()=>setToggle(!toggle)}    to='/dashboard/salesSummary' className='hover:underline flex  items-center gap-2 justify-center' > <MdOutlineSummarize className="md:text-3xl"/> Sales Summary</NavLink>
+         <NavLink onClick={()=>setToggle(!toggle)}     to='/dashboard/salesHistory' className='hover:underline flex  items-center gap-2 justify-center' > <FaHistory className="md:text-2xl"/> Sales History</NavLink>
          
 
          <div className="divider text-white bg-white h-1"></div>
-         <NavLink to='/  ' className='hover:underline  flex items-center gap-2 justify-center font-bold' > <FaHome className="md:text-3xl"></FaHome>Go Home</NavLink>
+         <NavLink onClick={()=>setToggle(!toggle)}  to='/  ' className='hover:underline  flex items-center gap-2 justify-center font-bold' > <FaHome className="md:text-3xl"></FaHome>Go Home</NavLink>
 
          <div className="divider text-white bg-white h-1"></div>
  
@@ -174,10 +174,21 @@ LOGOUT
 
     </div>
 
+
+
+
+
+
+
+
+
+
+
+
 {/* large */}
 
 <div className="hidden md:block  ">
-<div className='text-white flex py-10 flex-col bg-[#1E40AF]  md:px-5   min-h-screen space-y-5  md:text-center`'  >
+<div className='text-white flex py-10 flex-col bg-gradient-to-r from-[#0891B2] to-blue-500  md:px-5   min-h-screen space-y-5  md:text-center`'  >
 
 
 
@@ -198,18 +209,18 @@ LOGOUT
            <div className="divider text-white bg-white h-1"></div>
 
            
-         <NavLink to='/dashboard/manageShop' className='hover:underline font-bold flex items-center gap-2 justify-center'  ><FaShop className="md:text-3xl"/>  Mange Shop</NavLink>
-         <NavLink to='/dashboard/adminSaleSummary' className='hover:underline  flex items-center gap-2 justify-center font-bold' > <MdOutlineAttachMoney className="md:text-3xl" />  Sale Summary</NavLink>
-         <NavLink to='/dashboard/users  ' className='hover:underline  flex items-center gap-2 justify-center font-bold' > <FaUsers className="md:text-3xl"></FaUsers> Users</NavLink>
+         <NavLink to='/dashboard/manageShop' className='btn hover:bg-[#0369A1] hover:text-white hover:underline font-bold flex items-center gap-2 justify-center'  ><FaShop className="md:text-3xl"/>  Mange Shop</NavLink>
+         <NavLink to='/dashboard/adminSaleSummary' className='btn hover:bg-[#0369A1] hover:text-white hover:underline  flex items-center gap-2 justify-center font-bold' > <MdOutlineAttachMoney className="md:text-3xl" />  Sale Summary</NavLink>
+         <NavLink to='/dashboard/users  ' className='btn hover:bg-[#0369A1] hover:text-white hover:underline  flex items-center gap-2 justify-center font-bold' > <FaUsers className="md:text-3xl"></FaUsers> Users</NavLink>
 
          <div className="divider text-white bg-white h-1"></div>
 
-         <NavLink to='/  ' className='hover:underline  flex items-center gap-2 justify-center font-bold' > <FaHome className="md:text-3xl"></FaHome>Go Home</NavLink>
+         <NavLink to='/  ' className='btn hover:bg-[#0369A1] hover:text-white hover:underline  flex items-center gap-2 justify-center font-bold' > <FaHome className="md:text-3xl"></FaHome>Go Home</NavLink>
 
 
          <div className="divider text-white bg-white h-1"></div>
  
- <button onClick={handleLogout} className="flex items-center gap-2 justify-center font-bold">
+ <button onClick={handleLogout} className="flex  p-2 hover:bg-slate-800 hover:text-white items-center gap-2 justify-center font-bold">
 <TbLogout2 className="text-2xl"/>
 LOGOUT
 </button>
@@ -241,20 +252,20 @@ LOGOUT
 
            {/* <NavLink to='/dashboard/home' className='hover:underline' >Home</NavLink> */}
         
-         <NavLink to='/dashboard/productManagement' className='hover:underline font-bold flex  items-center gap-2 justify-center'  ><FaShop className="md:text-3xl"/> Product manage</NavLink>
+         <NavLink to='/dashboard/productManagement' className='btn hover:bg-[#0369A1] hover:text-white  hover:underline font-bold flex  items-center gap-2 justify-center'  ><FaShop className="md:text-3xl"/> Product manage</NavLink>
 
-         <NavLink to='/dashboard/saleCollection' className='hover:underline  font-bold flex  items-center gap-2 justify-center'> <MdPlaylistAddCheckCircle className="md:text-3xl"/> Sale Collection</NavLink>
-         <NavLink to='/dashboard/subsCription' className='hover:underline  flex  items-center gap-2 justify-center' ><MdPayment className="md:text-3xl" /> Subscription </NavLink>
-         <NavLink to='/dashboard/salesSummary' className='hover:underline flex  items-center gap-2 justify-center' > <MdOutlineSummarize className="md:text-3xl"/> Sales Summary</NavLink>
-         <NavLink to='/dashboard/salesHistory' className='hover:underline flex  items-center gap-2 justify-center' > <FaHistory className="md:text-2xl"/> Sales History</NavLink>
+         <NavLink to='/dashboard/saleCollection' className='btn hover:bg-[#0369A1] hover:text-white  hover:underline  font-bold flex  items-center gap-2 justify-center'> <MdPlaylistAddCheckCircle className="md:text-3xl"/> Sale Collection</NavLink>
+         <NavLink to='/dashboard/subsCription' className='btn hover:bg-[#0369A1] hover:text-white  hover:underline  flex  items-center gap-2 justify-center' ><MdPayment className="md:text-3xl" /> Subscription </NavLink>
+         <NavLink to='/dashboard/salesSummary' className='btn hover:bg-[#0369A1] hover:text-white  hover:underline flex  items-center gap-2 justify-center' > <MdOutlineSummarize className="md:text-3xl"/> Sales Summary</NavLink>
+         <NavLink to='/dashboard/salesHistory' className='btn hover:bg-[#0369A1] hover:text-white  hover:underline flex  items-center gap-2 justify-center' > <FaHistory className="md:text-2xl"/> Sales History</NavLink>
          
 
          <div className="divider text-white bg-white h-1"></div>
-         <NavLink to='/  ' className='hover:underline  flex items-center gap-2 justify-center font-bold' > <FaHome className="md:text-3xl"></FaHome>Go Home</NavLink>
+         <NavLink to='/  ' className='btn hover:bg-[#0369A1] hover:text-white  hover:underline  flex items-center gap-2 justify-center font-bold' > <FaHome className="md:text-3xl"></FaHome>Go Home</NavLink>
 
          <div className="divider text-white bg-white h-1"></div>
  
-         <button onClick={handleLogout} className="flex items-center gap-2 justify-center font-bold">
+         <button onClick={handleLogout} className="flex hover:bg-slate-800 p-2 items-center gap-2 justify-center font-bold">
     <TbLogout2 className="text-2xl"/>
   LOGOUT
 </button>

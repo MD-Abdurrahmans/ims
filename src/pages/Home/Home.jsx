@@ -5,7 +5,6 @@ import ContactUs from "./components/ContactUs"
 import Faq from "./components/Faq"
 import Plane from "./components/Plane"
 import Team from "./components/Team"
-import Testimonial from "./components/Testimonial"
 import Banner from "./components/banner"
 
 
@@ -15,7 +14,9 @@ const Home = () => {
           <Halmet title={'Home'} ></Halmet>
   
   {/* banner */}
+  <div className="h-[100vh]">
   <Banner/>
+  </div>
 
 
  <div className="my-10">
@@ -31,7 +32,7 @@ const Home = () => {
 <Plane/>
 
 {/* testimonial */}
-<Testimonial/>
+{/* <Testimonial/> */}
 
 {/* team */}
 

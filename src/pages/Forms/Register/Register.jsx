@@ -8,22 +8,27 @@ import Lottie from "lottie-react";
 import registerLogo from'../../../assets/register.json';
 import r1 from '../../../assets/r1.svg'
 import toast from 'react-hot-toast';
+import { ImSpinner4 } from "react-icons/im";
 
 import { RingLoader } from "react-spinners";
+import { useState } from "react";
+import { parse } from "postcss";
+import Swal from "sweetalert2";
 const Register = () => {
-const {createUser,updateUserProfile} = useAuth();
+const {createUser,updateUserProfile,user} = useAuth();
 const  axiosSecure = useAxiosSecure();
+const [error,setError] = useState('');
 // TODO: NAVIGATE AFTER REGISTRATION CREATE-SHOP 
 // const navigate = useNavigate();
 // console.log('user',user)
     const {
         register,
-        handleSubmit,
+        handleSubmit,reset,
         formState: { errors },
       } = useForm()
     
       const navigate = useNavigate();
-      const {loading} = useAuth();
+    const [load,setLoad]  =useState(null)
       const onSubmit = async(data) =>{
   console.log(data)
        const imgUrl = await upload(data.image[0])
@@ -32,39 +37,61 @@ const  axiosSecure = useAxiosSecure();
 
         if(imgUrl){
 
-             const result  = await   createUser(data?.email,data?.password)
 
-              if(result.user){
-             updateUserProfile(data.name,imageHost)
-             .then(async()=>{
-               const email = result.user?.email;
-   const userInfo ={
+          try {
+            setLoad(true)
+            const result  = await   createUser(data?.email,data?.password)
 
-               name:data.name,
-                image:result.user?.photoURL,
-                 email:email,
-                role: 'guest',
+            console.log('error',result)
+             if(result.user){
+            updateUserProfile(data.name,imageHost)
+            .then(async()=>{
+              const email = result.user?.email;
+  const userInfo ={
 
-             }
-        const res = await     axiosSecure.post(`/users/${email}`,userInfo)
+              name:data.name,
+               image:result.user?.photoURL,
+                email:email,
+               role: 'guest',
 
-         console.log('bye', res.data)
-           
-               if(res.data.acknowledged){
+            }
+       const res = await     axiosSecure.post(`/users/${email}`,userInfo)
 
-                 toast.success('Account Created successfully')
-                 navigate('/')
-               }
-               
-
-             })
-
+        console.log('bye', res.data)
           
-      
+              if(res.data.acknowledged){
 
-
-               
+                toast.success('Account Created successfully')
+                navigate('/')
               }
+              
+
+            })
+
+         
+     
+
+
+              
+             }
+          } catch (error) {
+            setLoad(false)
+
+            // console.log('catch error',error.message)
+
+            Swal.fire({
+              icon: "error",
+              title: `${error.message}`,
+              text: "Something went wrong,try again!",
+         
+            });
+
+reset()
+
+          }
+
+
+
         }
 
   
@@ -137,7 +164,7 @@ const  axiosSecure = useAxiosSecure();
 
 
         <div className="form-control mt-6">
-          <button className="btn bg-[#60A5FA] " > {loading? <RingLoader size={30} className="" color="#F5F5F4" /> :''}Register </button>
+          <button className="btn bg-[#60A5FA] " > {load?<ImSpinner4 className="animate-spin" />:''} Register </button>
         </div>
       </form>
     </div>

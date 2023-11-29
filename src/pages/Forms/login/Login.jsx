@@ -8,12 +8,15 @@ import useAxiosSecure from "../../../hooks/useAxiosSecure";
 import Halmet from "../../../shared/helmet/Halmet";
 import Lottie from "lottie-react";
 import loginLog from '../../../assets/login.json';
-import { Audio, ThreeCircles } from  'react-loader-spinner'
+import {  ThreeCircles } from  'react-loader-spinner'
 import { SiSpinrilla } from "react-icons/si";
 import toast from "react-hot-toast";
+import Swal from "sweetalert2";
+import { useState } from "react";
 const Login = () => {
-    const {signIn,signInWithGoogle,loading,user} = useAuth();
+    const {signIn,signInWithGoogle,user} = useAuth();
 const axiosSecure = useAxiosSecure();
+const [load,setLoad]  =useState(null)
 
 const navigate = useNavigate();
 // console.log('user',user)
@@ -27,16 +30,31 @@ const navigate = useNavigate();
 
 
 
-     const result =await    signIn(data.email,data.password)
+   try {
+    setLoad(true)
+    const result =await    signIn(data.email,data.password)
    
 
 
-      if(result.user.email){
-      
+    if(result.user.email){
+    
 
-        toast.success('Successfully LoggedIn')
-        navigate('/')
-      }
+      toast.success('Successfully LoggedIn')
+      navigate('/')
+    }
+
+   } catch (error) {
+    
+    setLoad(false)
+    Swal.fire({
+      icon: "error",
+      title: `${error.message}`,
+      text: "Something went wrong,try again!",
+ 
+    });
+   }
+
+
 
 
       }
@@ -45,7 +63,7 @@ const navigate = useNavigate();
 
       const handleGoogle = ()=>{
 
-
+        setLoad(true)
         signInWithGoogle()
         .then( async(result)=>{
 
@@ -139,7 +157,7 @@ const navigate = useNavigate();
 
 
         <div className="form-control mt-6">
-          <button className="btn bg-[#0284C7] text-white border-0 "> {loading? <SiSpinrilla className="text-2xl animate-spin  " />:''}  Login</button>
+          <button className="btn bg-[#0284C7] text-white border-0 "> {load? <SiSpinrilla className="text-2xl animate-spin  " />:''}  Login</button>
         </div>
 
          <div className="divider "> Or </div>

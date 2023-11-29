@@ -3,7 +3,7 @@ import contact from '../../../assets/contact.json'
 import Lottie from "lottie-react";
 const ContactUs = () => {
   return (
-    <div className="bg-[#4B5563] text-white">
+    <div className="bg-[#0891B2] text-white">
       <div className="grid max-w-screen-xl grid-cols-1 gap-8 px-8 py-16 mx-auto rounded-lg md:grid-cols-2 md:px-12 lg:px-16 xl:px-32 dark:bg-gray-800 dark:text-gray-100">
 	<div className="flex flex-col justify-between">
 		<div className="space-y-2">
@@ -25,7 +25,7 @@ const ContactUs = () => {
 			<label htmlFor="message" className="text-sm">Message</label>
 			<textarea id="message" rows="3" className="w-full p-3 rounded dark:bg-gray-800"></textarea>
 		</div>
-		<button type="submit" className="w-full p-3 text-sm font-bold tracki uppercase rounded dark:bg-violet-400 dark:text-gray-900">Send Message</button>
+		<button type="submit" className="btn btn-outline text-white">Send Message</button>
 	</form>
 </div>
     </div>
